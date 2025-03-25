@@ -10,29 +10,31 @@ int get_number_of_words(char* text);
 
 int main(void)
 {
-
-    // Prompt the user for some text
     // Count the number of letters, words, and sentences in the text
     char* text = get_text();
     int sentences = get_number_of_sentences(text);
     int letters = get_number_of_letters(text);
     int words = get_number_of_words(text);
-    printf("Number of sentences:  %i\n", sentences);
-    printf("Number of letters:  %i\n", letters);
-    printf("Number of words:  %i\n", words);
-
-    
 
     // Compute the Coleman-Liau index
-
-    // Print the grade level
+    float coleman_liau_index = 0.0588 * letters/words * 100 - 0.296 * sentences/words * 100 - 15.8;
+    if (coleman_liau_index <= 0)
+    {
+        printf("Before grade 1\n");
+    } else if (coleman_liau_index >= 16)
+    {
+        printf("Grade 16+\n");
+    } else
+    {
+        printf("Grade %d\n", (int) round(coleman_liau_index));
+    }   
 }
 
 char* get_text(void)
 {
-    static char text[500]; // Increased size to allow longer input
+    static char text[500]; 
     printf("Enter text: ");
-    fgets(text, sizeof(text), stdin); // Use fgets instead of scanf to read full sentences
+    fgets(text, sizeof(text), stdin);  
     return text;
 }
 
