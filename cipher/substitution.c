@@ -6,18 +6,36 @@
 
 bool check_for_duplicates(const char *key);
 bool validate_key(const char *key);
+char* get_text(void);
+char mapp_letter(char letter, const char *key);
+
 
 int main(int argc, char* argv[])
 {
-char* key = argv[1];
-validate_key(key);
+    if (argc != 2)
+    {
+        printf("Usage ./substitution key \n");
+        return 1;
+    }
+
+    char* key = argv[1];
+
+    if (!validate_key(key))
+    {
+        return 1;
+    }
+    //prompt user for text
+    char* plaintext = get_text();
+
+    free(plaintext);
+
 }
 
 bool check_for_duplicates(const char *key)
 {
     bool seen[26] = {false};  // array of seen letters
 
-    for (int i; key[i] != '\0'; i++)
+    for (int i = 0; key[i] != '\0'; i++)
     {
         char letter = tolower(key[i]);
         int index = letter - 'a';
@@ -38,7 +56,7 @@ bool validate_key(const char *key)
     int size = strlen(key);
     if (size != 26)
     {
-        printf("Wrong key! Must be 26 letters!\n");
+        printf("Key must contain 26 characters.\n");
         return false;
     }   
     //Ensure the key contains only alphabetic characters.
@@ -57,4 +75,33 @@ bool validate_key(const char *key)
         return false;
     }  
     return true; 
+}
+
+char* get_text(void)
+{
+    char *text = malloc(500);  // Allocate memory dynamically
+    if (!text) 
+    {
+        printf("Memory allocation failed.\n");
+        exit(1);
+    }
+
+    printf("plaintext: ");
+    fgets(text, 500, stdin);
+    return text;
+}
+
+char mapp_letter(char letter, const char *key)
+{
+    if (isalpha(letter))
+    {
+        bool is_upper = isupper(letter);
+        int index = tolower(letter) - 'a';
+        char mapped = key[index];
+
+        return is_upper ? toupper(mapped) : tolower(mapped); 
+
+    }
+    return letter;
+
 }
