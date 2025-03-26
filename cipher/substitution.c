@@ -7,7 +7,8 @@
 bool check_for_duplicates(const char *key);
 bool validate_key(const char *key);
 char* get_text(void);
-char mapp_letter(char letter, const char *key);
+char map_letter(char letter, const char *key);
+void encrypt_text(char *text, const char *key);
 
 
 int main(int argc, char* argv[])
@@ -26,6 +27,9 @@ int main(int argc, char* argv[])
     }
     //prompt user for text
     char* plaintext = get_text();
+    encrypt_text(plaintext, key);
+    // Print the encrypted text
+    printf("ciphertext: %s\n", plaintext);  // Output the encrypted text
 
     free(plaintext);
 
@@ -91,7 +95,7 @@ char* get_text(void)
     return text;
 }
 
-char mapp_letter(char letter, const char *key)
+char map_letter(char letter, const char *key)
 {
     if (isalpha(letter))
     {
@@ -104,4 +108,12 @@ char mapp_letter(char letter, const char *key)
     }
     return letter;
 
+}
+
+void encrypt_text(char *text, const char *key)
+{
+    for (int i = 0; text[i] != '\0'; i++)
+    {
+        text[i] = map_letter(text[i], key); // Replace each letter
+    }
 }
