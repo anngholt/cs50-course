@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
     // Check for invalid usage
     if (argc < 2)
     {
-        printf("Usage: plurality Candidate1 ...]\n");
+        printf("Usage: plurality Candidate1 ...\n");
         return 1;
     }
 
