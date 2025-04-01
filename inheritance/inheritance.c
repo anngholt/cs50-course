@@ -45,6 +45,7 @@ person *create_family(int generations)
         fprintf(stderr, "Memory allocation failed\n"); //error message
         exit(1);
     }
+    
 
     // If there are still generations left to create
     if (generations > 1)
@@ -53,14 +54,21 @@ person *create_family(int generations)
         person *parent0 = create_family(generations - 1);
         person *parent1 = create_family(generations - 1);
 
+        if (parent0 == NULL || parent1 == NULL)
+        {
+            free(p);
+            return NULL;
+        }
+
         // Set parent pointers for current person
         p->parents[0] = parent0;
         p->parents[1] = parent1;
 
         // Randomly assign current person's alleles based on the alleles of their parents
-        p->alleles[0] = parent0->alleles[rand() % 2];
-        p->alleles[1] = parent1->alleles[rand() % 2];
+        p->alleles[0] = parent0->alleles[random() % 2];
+        p->alleles[1] = parent1->alleles[random() % 2];
     }
+
 
     // If there are no generations left to create
     else
