@@ -1,0 +1,48 @@
+# Ignore compiled binary files
+*.o
+*.out
+*.exe
+
+# Ignore backup and temporary files
+*~
+*.swp
+*.swo
+
+# Ignore Visual Studio Code specific files
+.vscode/
+*.code-workspace
+
+# Ignore build artifacts and logs
+build/
+dist/
+*.log
+
+# Ignore image processing output files
+*.ppm
+*.pgm
+*.bmp
+*.jpg
+*.png
+
+# Ignore dependency files
+*.d
+
+# Ignore generated configuration files
+config.h
+autoconf.h
+
+# Ignore Makefile generated files
+Makefile
+Makefile.in
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Ignore package manager files (if any)
+nod_modules/
+venv/
+*.pyc
+
+# Ignore core dumps and debugging files
+core*
+*.stackdump
