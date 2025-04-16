@@ -1,31 +1,81 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-        <link href="styles.css" rel="stylesheet">
-        <title>Trivia!</title>
-        <script>
-            // TODO: Add code to check answers to questions
-        </script>
-    </head>
-    <body>
-        <div class="header">
-            <h1>Trivia!</h1>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Part 1: Multiple Choice</h2>
+            <hr>
+            <h3>What is the capital of France?</h3>
+            <button class="choice incorrect">Berlin</button>
+            <button class="choice correct">Paris</button>
+            <button class="choice incorrect">Madrid</button>
+            <p id="mc-feedback"></p>
         </div>
 
-        <div class="container">
-            <div class="section">
-                <h2>Part 1: Multiple Choice </h2>
-                <hr>
-                <!-- TODO: Add multiple choice question here -->
-            </div>
-
-            <div class="section">
-                <h2>Part 2: Free Response</h2>
-                <hr>
-                <!-- TODO: Add free response question here -->
-            </div>
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+            <hr>
+            <h3>Who painted the Mona Lisa?</h3>
+            <input type="text" id="text-answer">
+            <button id="check-answer">Check</button>
+            <p id="text-feedback"></p>
         </div>
-    </body>
+    </div>
+
+    <script>
+        const choices = document.querySelectorAll('.choice');
+        const feedback = document.getElementById('mc-feedback');
+
+        choices.forEach(button => {
+            button.addEventListener('click', function () {
+                // Clear any previous feedback
+                feedback.textContent = '';
+
+                // Check if the button clicked is the correct one
+                if (button.classList.contains('correct')) {
+                    // If correct answer, make the button green
+                    button.classList.add('selected-correct');
+                    feedback.textContent = 'Correct!';
+                    feedback.classList.add('correct');
+                } else {
+                    // If incorrect answer, make the button red
+                    button.classList.add('selected-incorrect');
+                    feedback.textContent = 'Incorrect';
+                    feedback.classList.add('incorrect');
+                }
+
+                // Disable all buttons after a selection
+                choices.forEach(btn => btn.disabled = true);
+            });
+        });
+
+        const checkBtn = document.getElementById('check-answer');
+        const textInput = document.getElementById('text-answer');
+        const textFeedback = document.getElementById('text-feedback');
+
+        checkBtn.addEventListener('click', function () {
+            const userAnswer = textInput.value.trim().toLowerCase();
+            const correctAnswer = "leonardo da vinci";
+
+            if (userAnswer === correctAnswer) {
+                textInput.classList.remove('selected-incorrect');
+                textInput.classList.add('selected-correct');
+                textFeedback.textContent = "Correct!";
+            } else {
+                textInput.classList.remove('selected-correct');
+                textInput.classList.add('selected-incorrect');
+                textFeedback.textContent = "Incorrect";
+            }
+        });
+    </script>
+</body>
 </html>

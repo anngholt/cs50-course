@@ -1,3 +1,4 @@
+/* General body styles */
 body {
     background-color: #fff;
     color: #212529;
@@ -8,6 +9,7 @@ body {
     text-align: left;
 }
 
+/* Container styles */
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -15,6 +17,7 @@ body {
     padding-right: 15px;
 }
 
+/* Header styles */
 .header {
     background-color: #477bff;
     color: #fff;
@@ -23,6 +26,7 @@ body {
     text-align: center;
 }
 
+/* Section padding and hover styles */
 .section {
     padding: 0.5rem 2rem 1rem 2rem;
 }
@@ -32,11 +36,13 @@ body {
     transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
 }
 
+/* Title styles */
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;
 }
 
+/* Button and input styles */
 button, input[type="submit"] {
     background-color: #d9edff;
     border: 1px solid transparent;
@@ -50,13 +56,73 @@ button, input[type="submit"] {
     vertical-align: middle;
 }
 
-
+/* Text input field */
 input[type="text"] {
     line-height: 1.8;
     width: 25%;
 }
 
-input[type="text"]:hover {
+/* Button hover effects */
+button:hover, input[type="text"]:hover {
     background-color: #f5f5f5;
     transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+/* Correct answer - Green (Button and Feedback) */
+button.selected-correct {
+    background-color: green !important;
+    color: white;
+}
+
+input[type="text"].selected-correct {
+    background-color: lightgreen !important;
+    color: black;
+}
+
+#mc-feedback.correct {
+    color: green;
+}
+
+/* Incorrect answer - Red (Button and Feedback) */
+button.selected-incorrect {
+    background-color: red !important;
+    color: white;
+}
+
+input[type="text"].selected-incorrect {
+    background-color: lightcoral !important;
+    color: black;
+}
+
+#mc-feedback.incorrect {
+    color: red;
+}
+
+/* Smooth transition for buttons and text input */
+button.choice,
+input[type="text"] {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Feedback styling */
+#mc-feedback {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Layout for multiple choice questions */
+button.choice {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Make the input fields align better */
+input[type="text"] {
+    margin-bottom: 10px;
+}
+
+/* Add some space between sections */
+.section {
+    margin-bottom: 2rem;
 }
